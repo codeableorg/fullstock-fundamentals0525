@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FullStock</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Bienvenidos a FullStock</h1>
+    <p>Aquí la lista de productos</p>
+    <ul>
+      <% products.forEach(product => { %>
+      <li><%= product.name %> - S/.<%= product.price %></li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
