@@ -20,22 +20,28 @@ const products = [
 const categories = [
   {
     id: 1,
-    name: "Polos",
-    image: "/images/polos.jpg",
+    title: "Polos",
+    slug: "polos",
+    imgSrc: "/images/polos.jpg",
+    alt: "Hombre luciendo polo azul",
     description:
       "Polos exclusivos con diseños que todo desarrollador querrá lucir. Ideales para llevar el código a donde vayas.",
   },
   {
     id: 2,
-    name: "Tazas",
-    image: "/images/tazas.jpg",
+    title: "Tazas",
+    slug: "tazas",
+    imgSrc: "/images/tazas.jpg",
+    alt: "Tazas con diseño de código",
     description:
-      "Tazas que combinan perfectamente con tu café matutino y tu pasión por la programación. ¡Empieza el día con estilo!",
+      "Tazas que combinan perfectamente con tu café matutino y tu pasión por la programación.",
   },
   {
     id: 3,
-    name: "Stickers",
-    image: "/images/stickers.jpg",
+    title: "Stickers",
+    slug: "stickers",
+    imgSrc: "/images/stickers.jpg",
+    alt: "Stickers de desarrollo web",
     description:
       "Personaliza tu espacio de trabajo con nuestros stickers únicos y muestra tu amor por el desarrollo web.",
   },
