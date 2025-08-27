@@ -47,8 +47,17 @@
     <p>Compra por categoria</p>
     <p>Explora nuestra variedad de productos por categoría.</p>
     <ul>
-      <% products.forEach((producto) => { %>
-      <li><%= producto.name %> - S/. <%= producto.price %></li>
+      <% categories.forEach((category) => { %>
+      <li>
+        <div>
+          <img
+            src="<%= category.image %>"
+            alt="<%= category.name %>"
+            width="200"
+          />
+        </div>
+        <%= category.name %> - S/. <%= category.description %>
+      </li>
       <% }) %>
     </ul>
 
