@@ -1,4 +1,5 @@
 import express from "express";
+import { readDB } from "./data/db.js";
 
 const app = express();
 const PORT = 3000;
@@ -8,50 +9,10 @@ app.set("views", "views");
 
 app.use(express.static("public")); // /
 
-const products = [
-  { id: 1, name: "Producto 1", price: 100 },
-  { id: 2, name: "Producto 2", price: 200 },
-  { id: 3, name: "Producto 3", price: 300 },
-  { id: 4, name: "Producto 4", price: 400 },
-  { id: 5, name: "Producto 5", price: 500 },
-  { id: 6, name: "Producto 6", price: 600 },
-];
 
-const categories = [
-  {
-    id: 1,
-    title: "Polos",
-    slug: "polos",
-    imgSrc: "/images/polos.jpg",
-    alt: "Hombre luciendo polo azul",
-    description:
-      "Polos exclusivos con diseños que todo desarrollador querrá lucir. Ideales para llevar el código a donde vayas.",
-  },
-  {
-    id: 2,
-    title: "Tazas",
-    slug: "tazas",
-    imgSrc: "/images/tazas.jpg",
-    alt: "Tazas con diseño de código",
-    description:
-      "Tazas que combinan perfectamente con tu café matutino y tu pasión por la programación.",
-  },
-  {
-    id: 3,
-    title: "Stickers",
-    slug: "stickers",
-    imgSrc: "/images/stickers.jpg",
-    alt: "Stickers de desarrollo web",
-    description:
-      "Personaliza tu espacio de trabajo con nuestros stickers únicos y muestra tu amor por el desarrollo web.",
-  },
-];
-
-app.get("/", (req, res) => {
-  // Para mañana:
-  // Obtener los productos desde el archivo Json
-  // const products = getProducts();
-  //res.render("productos", { products });
+app.get("/", async (req, res) => {
+  const databaseInfo = await readDB();
+  const categories = databaseInfo.categories;
   res.render("home", { categories });
 });
 
