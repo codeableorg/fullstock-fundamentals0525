@@ -4,18 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FullStock</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/public/css/index.css" />
   </head>
   <body>
-    <section>
-      aqui va el header
+    <div class="container header-main">
+      <div class="header-main__top">
+        <a href="/">
+          <img
+            src="/images/fullstock-logo.svg"
+            alt="FullStock inicio"
+            width="128
+            "
+            height="32"
+          />
+        </a>
+        <div class="header-actions"></div>
+      </div>
+      <div class="separator header-main__separator"></div>
+      <nav aria-label="Navegación principal" class="main-nav">
+        <ul class="main-nav__list" role="menubar">
+          <li>item 1</li>
+          <li>item 2</li>
+          <li>item 3</li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div class="container hero__container">
+        <h2 class="hero__title">Nuevos productos disponibles</h2>
+        <p class="hero__text">
+          Un pequeño lote de increíbles productos acaba de llegar.
+          <br />
+          Agrega tus favoritos al carrito antes que se agoten.
+        </p>
+        <a href="/polos" class="button button--xl">Compra ahora</a>
+      </div>
     </section>
+
     <h1>Bienvenidos a FullStock</h1>
     <p>Aquí la lista de productos</p>
     <ul>
-      <% products.forEach(product => { %>
-      <li><%= product.name %> - S/.<%= product.price %></li>
-      <% }); %>
+      <li>Producto 1 - S/.100</li>
+      <li>Producto 2 - S/.200</li>
+      <li>Producto 3 - S/.300</li>
     </ul>
   </body>
 </html>
