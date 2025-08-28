@@ -8,14 +8,20 @@
   </head>
 
   <body>
-    <!-- 1. ¿Qué significa include?
+    <div class="root">
+      <!-- 1. ¿Qué significa include?
       include es una función propia de EJS, no de Express.
       Sirve para reutilizar plantillas parciales.
       Un partial es un fragmento de HTML/EJS que quieres repetir en varias vistas (ejemplo: header, footer, navbar, etc.). -->
-    <header><%- include('../partials/header.ejs') %></header>
-    
-    <main><%- body %></main>
+      <header class="root__header">
+        <%- include('../partials/header.ejs', { categories }) %>
+      </header>
 
-    <footer><%- include('../partials/footer.ejs') %></footer>
+      <main><%- body %></main>
+
+      <footer class="root__footer">
+        <%- include('../partials/footer.ejs') %>
+      </footer>
+    </div>
   </body>
 </html>

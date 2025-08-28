@@ -14,10 +14,15 @@
   <div class="separator header-main__separator"></div>
   <nav aria-label="Navegación principal" class="main-nav">
     <ul class="main-nav__list" role="menubar">
-      <li class="main-nav__link">Polos</li>
+
+      <% for (const category of categories) { %>
+      <li class="main-nav__link"><%= category.title %></li>
+      <% } %>
+
+      <!-- <li class="main-nav__link">Polos</li>
       <li class="main-nav__link">Tazas</li>
       <li class="main-nav__link">Stickers</li>
-      <li class="main-nav__link">Compañía</li>
+      <li class="main-nav__link">Compañía</li> -->
     </ul>
   </nav>
 </div>

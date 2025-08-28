@@ -27,9 +27,13 @@ app.use(expressEjsLayouts);
 // Nota: el argumento "layout", es una palabra resevada que es usada en la libreria 'express-ejs-layouts'
 app.set("layout", "layouts/root");
 
+
+// app.use(sharedDataMiddleware);
+
 app.get("/", async (req, res) => {
   const databaseInfo = await readDB();
   const categories = databaseInfo.categories;
+  console.log("CATEGORIES: ", categories)
   res.render("home", { categories });
 });
 
@@ -39,11 +43,6 @@ app.get("/products", async (req, res) => {
   res.render("products", { products });
 });
 
-app.get("/test", async (req, res) => {
-  console.log("Si se esta ejecutanto !");
-  // res.render("layouts/root.ejs");
-  res.send({ message: "esto es de prueba" });
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: http://localhost:${PORT}`);
