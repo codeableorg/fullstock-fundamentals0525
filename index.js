@@ -24,6 +24,7 @@ app.use(expressEjsLayouts);
 
 // Le dices al middleware:
 // El layout principal se llama root.ejs y está dentro de views/layouts/
+// Nota: el argumento "layout", es una palabra resevada que es usada en la libreria 'express-ejs-layouts'
 app.set("layout", "layouts/root");
 
 app.get("/", async (req, res) => {
