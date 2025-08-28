@@ -16,6 +16,13 @@ app.get("/", async (req, res) => {
   res.render("home", { categories });
 });
 
+app.get("/products", async (req, res) => {
+  const databaseInfo = await readDB();
+  const products = databaseInfo.products;
+  res.render("products", { products });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: http://localhost:${PORT}`);
 });
