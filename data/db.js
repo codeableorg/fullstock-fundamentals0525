@@ -9,3 +9,12 @@ export async function readDB() {
     throw new Error("Failed to read database");
   }
 }
+
+export async function findAllCategories() {
+  try {
+    const db = await readDb();
+    return db.categories;
+  } catch (error) {
+    throw new DatabaseError("Failed to retrieve categories", error);
+  }
+}
