@@ -44,7 +44,31 @@
     </section>
 
     <!-- Inicio de seccion de categorias -->
-    <p>Aqui va el contendio html de la sección de productos</p>
+
+    <div class="products__grid">
+      <% for (const product of products) { %>
+      <a href="/products/<%= product.id %>" class="product-card">
+        <div class="product-card__container">
+          <div class="product-card__image-container">
+            <img
+              src="<%= product.imgSrc %>"
+              alt="<%= product.title %>"
+              class="product-card__image"
+            />
+          </div>
+          <div class="product-card__content">
+            <h2 class="product-card__title"><%= product.title %></h2>
+            <p class="product-card__description"><%= product.description %></p>
+            <p class="product-card__price">$<%= product.price %></p>
+          </div>
+          <% if (product.isOnSale) { %>
+          <span class="product-card__sale-badge">🚀 Oferta</span>
+          <% } %>
+        </div>
+      </a>
+      <% } %>
+    </div>
+
     <!-- Fin de seccion de categorias -->
 
     <div class="container">
