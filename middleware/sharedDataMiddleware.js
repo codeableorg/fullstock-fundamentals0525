@@ -1,6 +1,8 @@
 export default async function sharedDataMiddleware(req, res, next) {
   try {
     // Obtener categorías para la navegación
+
+    // aqui esto debe hacece un update para que esta data se traiga de BD
     const categories = [
       {
         id: 1,
@@ -30,7 +32,6 @@ export default async function sharedDataMiddleware(req, res, next) {
           "Personaliza tu espacio de trabajo con nuestros stickers únicos y muestra tu amor por el desarrollo web.",
       },
     ];
-    // aqui esto debe hacece un update
 
     // Establecer variables locales para las plantillas
     res.locals.categories = categories;
