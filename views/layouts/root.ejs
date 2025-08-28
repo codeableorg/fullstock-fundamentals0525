@@ -14,7 +14,8 @@
       Sirve para reutilizar plantillas parciales.
       Un partial es un fragmento de HTML/EJS que quieres repetir en varias vistas (ejemplo: header, footer, navbar, etc.). -->
       <header class="root__header">
-        <%- include('../partials/header.ejs', { categories }) %>
+        <%- include('../partials/header.ejs', { categories })
+        %>
       </header>
 
       <main><%- body %></main>

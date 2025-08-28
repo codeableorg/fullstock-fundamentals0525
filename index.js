@@ -1,6 +1,7 @@
 import express from "express";
 import { readDB } from "./data/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
+import sharedDataMiddleware from "./middleware/sharedDataMiddleware.js"
 
 const app = express();
 const PORT = 3000;
@@ -28,7 +29,7 @@ app.use(expressEjsLayouts);
 app.set("layout", "layouts/root");
 
 
-// app.use(sharedDataMiddleware);
+app.use(sharedDataMiddleware);
 
 app.get("/", async (req, res) => {
   const databaseInfo = await readDB();
@@ -40,6 +41,7 @@ app.get("/", async (req, res) => {
 app.get("/products", async (req, res) => {
   const databaseInfo = await readDB();
   const products = databaseInfo.products;
+  console.log("productos: ", products);
   res.render("products", { products });
 });
 
