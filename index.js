@@ -1,7 +1,7 @@
 import express from "express";
-import { readDB } from "./data/db.js";
 import expressEjsLayouts from "express-ejs-layouts";
-import sharedDataMiddleware from "./middleware/sharedDataMiddleware.js"
+import sharedDataMiddleware from "./middleware/sharedDataMiddleware.js";
+import routes from "./routes/index.js";
 
 const app = express();
 const PORT = 3000;
@@ -28,31 +28,12 @@ app.use(expressEjsLayouts);
 // Nota: el argumento "layout", es una palabra resevada que es usada en la libreria 'express-ejs-layouts'
 app.set("layout", "layouts/root");
 
-
+// Este middleware, se ejecuta primero, y lo que hace es setear
+// cierta variables , para que esten disponibles globalmente en el proyecto
 app.use(sharedDataMiddleware);
 
-app.get("/", async (req, res) => {
-  const databaseInfo = await readDB();
-  const categories = databaseInfo.categories;
-  console.log("CATEGORIES: ", categories)
-  res.render("home", { categories });
-});
-
-app.get("/products", async (req, res) => {
-  const databaseInfo = await readDB();
-  const products = databaseInfo.products;
-  console.log("productos: ", products);
-  res.render("products", { products });
-});
-
-
-app.get("/test", async (req, res) => {
-  const databaseInfo = await readDB();
-  const test = databaseInfo.test;
-  console.log("test: ", test);
-  res.render("test", { test });
-});
-
+// Definir las rutas que se utilizaran en todo el proyecto
+app.use("/", routes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: http://localhost:${PORT}`);
