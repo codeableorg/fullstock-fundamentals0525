@@ -46,6 +46,14 @@ app.get("/products", async (req, res) => {
 });
 
 
+app.get("/test", async (req, res) => {
+  const databaseInfo = await readDB();
+  const test = databaseInfo.test;
+  console.log("test: ", test);
+  res.render("test", { test });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: http://localhost:${PORT}`);
 });

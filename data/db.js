@@ -12,9 +12,11 @@ export async function readDB() {
 
 export async function findAllCategories() {
   try {
-    const db = await readDb();
-    return db.categories;
+    const data = await fs.readFile("data/db.json", "utf8");
+    const jsonData = JSON.parse(data);
+    return jsonData.categories;
   } catch (error) {
-    throw new DatabaseError("Failed to retrieve categories", error);
+    console.log("UPS!")
+    throw new Error("Failed to retrieve categories", error);
   }
 }
