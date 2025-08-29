@@ -14,7 +14,15 @@
   <nav aria-label="Navegación principal" class="main-nav">
     <ul class="main-nav__list" role="menubar">
       <% for (const category of categories) { %>
-      <li class="main-nav__link"><%= category.title %></li>
+      <li class="main-nav__item" role="none">
+        <a
+          href="/<%= category.slug %>"
+          role="menuitem"
+          class="main-nav__link <%= activePage === category.slug ? 'main-nav__link--active' : '' %>"
+        >
+          <%= category.title %>
+        </a>
+      </li>
       <% } %>
     </ul>
   </nav>

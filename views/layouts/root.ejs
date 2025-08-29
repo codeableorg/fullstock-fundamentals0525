@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FullStock</title>
+    <title>FullStock <%= title ? `| ${title}` : "" %></title>
     <link rel="stylesheet" href="/css/index.css" />
   </head>
 
@@ -14,8 +14,7 @@
       Sirve para reutilizar plantillas parciales.
       Un partial es un fragmento de HTML/EJS que quieres repetir en varias vistas (ejemplo: header, footer, navbar, etc.). -->
       <header class="root__header">
-        <%- include('../partials/header.ejs', { categories })
-        %>
+        <%- include('../partials/header.ejs', { categories, activePage }) %>
       </header>
 
       <%- body %>
