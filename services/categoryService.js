@@ -1,10 +1,16 @@
 import * as categoryRepository from "../repositories/categoryRepository.js";
 
-export async function getProductsByCategory(categoryType) {
-  const categoryData = await categoryRepository.findByCategory(categoryType);
+export async function getCategory(categoryType) {
+  const category = await categoryRepository.findByCategory(categoryType);
 
-  if (!categoryData) {
+  if (!category) {
     throw new Error(`category type ${categoryType} not found!`);
   }
-  return categoryData;
+  return category;
+}
+
+export async function getProductsByCategoryId(categoryId) {
+  const products = await categoryRepository.findAllByCategoryId(categoryId);
+
+  return products;
 }
