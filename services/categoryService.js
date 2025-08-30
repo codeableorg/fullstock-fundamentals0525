@@ -8,9 +8,3 @@ export async function getCategory(categoryType) {
   }
   return category;
 }
-
-export async function getProductsByCategoryId(categoryId) {
-  const products = await categoryRepository.findAllByCategoryId(categoryId);
-
-  return products;
-}

@@ -1,4 +1,5 @@
 import * as categoryService from "../services/categoryService.js";
+import * as productsService from "../services/productService.js"
 
 export const getProductsByCategory = async (req, res) => {
   try {
@@ -7,9 +8,10 @@ export const getProductsByCategory = async (req, res) => {
 
     // paso 2: Obtener una categoria
     const category = await categoryService.getCategory(categoryType);
+    console.log("que trae category??", category)
 
     // paso 3: Obtener lista de productos a mostrar
-    const products = await categoryService.getProductsByCategoryId(category.id);
+    const products = await productsService.getProductsByCategoryId(category.id);
 
     res.render("test", {
       title: category.title,
