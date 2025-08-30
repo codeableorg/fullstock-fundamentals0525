@@ -6,3 +6,9 @@ export async function getProductsByCategoryId(categoryId) {
 
   return products;
 }
+
+export async function getProductbyId(id){
+  const productData = await productsRepository.getProductById(id);
+
+  return productData; 
+}

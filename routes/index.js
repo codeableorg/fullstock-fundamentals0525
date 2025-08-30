@@ -1,6 +1,8 @@
 import express from "express";
 import * as homeController from "../controller/homeController.js";
 import * as categoryController from "../controller/categoryController.js";
+import * as productController from "../controller/productController.js";
+import * as cartController from "../controller/cartController.js";
 
 const router = express.Router();
 
@@ -10,22 +12,10 @@ router.get("/", homeController.getHomePage);
 // Ruta de categories (polos, tazas y stickers)
 router.get("/:categoryType", categoryController.getProductsByCategory);
 
-// router.get("/polos", (req, res) => {
-//   res.send("lista de polos ");
-// });
-// router.get("/tazas", (req, res) => {
-//   res.send("lista de tazas ");
-// });
-// router.get("/stickers", (req, res) => {
-//   res.send("lista de stickers ");
-// });
+router.get("/:categoryType/:id", productController.getProduct);
 
-// router.get("/products", (req, res) => {
-//   res.render("products");
-// });
-
-// router.get("/test", (req, res) => {
-//   res.render("test");
-// });
+// Rutas para el carrito de compra
+router.get("/cart", cartController.getCart);
+router.post("/cart/add-item", cartController.addItem);
 
 export default router;

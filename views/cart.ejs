@@ -1,0 +1,76 @@
+<section class="section">
+  <div class="container cart">
+    <h1 class="cart__title">Carrito de compras</h1>
+    <div class="cart__container">
+      <% if (cart?.items) { %>
+      <% for (const { product, quantity, id } of cart.items) { %>
+      <div class="cart__item">
+        <div class="cart__item-image">
+          <img src="<%= product.imgSrc %>" alt="<%= product.alt || product.title %>" class="cart__item-image-content" />
+        </div>
+        <div class="cart__item-details">
+          <div class="cart__item-header">
+            <h2 class="cart__item-title">
+              <%= product.title %>
+            </h2>
+            <form action="/cart/delete-item" method="post">
+              <input type="hidden" name="productId" value="<%= product.id %>" />
+              <button class="button button--sm-icon button--outline">
+                <!-- Trash Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18" />
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                  <line x1="10" x2="10" y1="11" y2="17" />
+                  <line x1="14" x2="14" y1="11" y2="17" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="cart__item-footer">
+            <p class="cart__item-price">
+              $<%= product.price.toFixed(2) %>
+            </p>
+            <div class="cart__item-quantity">
+              <form action="/cart/remove-item" method="post">
+                <input type="hidden" name="productId" value="<%= product.id %>" />
+                <button class="button button--sm-icon button--outline" <%= quantity === 1 ? 'disabled' : '' %>>
+                  <!-- Minus Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                  </svg>
+                </button>
+              </form>
+              <span class="cart__item-quantity-display">
+                <%= quantity %>
+              </span>
+              <form action="/cart/add-item" method="post">
+                <input type="hidden" name="productId" value="<%= product.id %>" />
+                <button class="button button--sm-icon button--outline">
+                  <!-- Plus Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="M12 5v14" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% } %>
+      <div class="cart__total">
+        <p>Total</p>
+        <p>$<%= (cart?.totalAmount || 0).toFixed(2) %></p>
+      </div>
+      <div class="cart__action">
+        <% if (cart?.items?.length > 0) { %>
+        <a class="button button--lg cart__action-button" href="/checkout">Continuar Compra</a>
+        <% } else { %>
+        <a class="button button--lg cart__action-button" href="/">Ir a la tienda</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

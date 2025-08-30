@@ -13,3 +13,13 @@ export async function findAllProductsByCategoryId(categoryId) {
     );
   }
 }
+
+export async function getProductById(id) {
+  try {
+    const db = await readDB();
+
+    return db.products.find((product) => product.id === id);
+  } catch (error) {
+    throw new Error(`Failed to retrive product data with id : ${id}`, error);
+  }
+}
