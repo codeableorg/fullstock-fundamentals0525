@@ -1,7 +1,12 @@
 import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
 import sharedDataMiddleware from "./middleware/sharedDataMiddleware.js";
+import sessionMiddleware from "./middleware/sessionMiddleware.js";
 import routes from "./routes/index.js";
+import dotenv from "dotenv";
+
+// Cargar variables de entorno desde el archivo .env
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -28,6 +33,8 @@ app.use(expressEjsLayouts);
 // Nota: el argumento "layout", es una palabra resevada que es usada en la libreria 'express-ejs-layouts'
 app.set("layout", "layouts/root");
 
+
+app.use(sessionMiddleware);
 // Este middleware, se ejecuta primero, y lo que hace es setear
 // cierta variables , para que esten disponibles globalmente en el proyecto
 app.use(sharedDataMiddleware);

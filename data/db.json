@@ -372,5 +372,30 @@
       ]
     }
   ],
-  "test":[] 
+  "carts": [
+    {
+      "id": 1,
+      "sessionId": "OTrduLxomRykg0IFwqCnvDEX-a0J-wKw",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 2
+        },
+        {
+          "productId": 10,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "sessionId": "JDRbHKEAU4PfOAWwq3uoujjla9ok-CNX",
+      "items": []
+    },
+    {
+      "id": 3,
+      "sessionId": "4nR_3AYEetJ67uMBDzngf96k4pX6bNJQ",
+      "items": []
+    }
+  ]
 }

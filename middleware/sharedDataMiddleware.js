@@ -1,4 +1,5 @@
 import { findAllCategories } from "../data/db.js";
+import * as cartService from "../services/cartService.js";
 
 export default async function sharedDataMiddleware(req, res, next) {
   try {
@@ -6,8 +7,9 @@ export default async function sharedDataMiddleware(req, res, next) {
 
     // Establecer variables locales para las plantillas
     res.locals.categories = categories;
-    res.locals.titleOfApplication = "FullStock";
-    res.locals.chavito = "Lo que sea";
+
+    // Obtener informacion del carrito!
+      const cartData = await cartService.getCartData(req.session.id);
 
     next();
   } catch (error) {

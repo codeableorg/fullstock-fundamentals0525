@@ -23,3 +23,12 @@ export async function getProductById(id) {
     throw new Error(`Failed to retrive product data with id : ${id}`, error);
   }
 }
+
+export async function findAll() {
+  try {
+    const db = await readDB();
+    return db.products;
+  } catch (error) {
+    throw new Error(`Failed to retrieve all products`, error);
+  }
+}
