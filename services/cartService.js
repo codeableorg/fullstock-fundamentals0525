@@ -4,11 +4,8 @@ import * as productRepository from "../repositories/productRepository.js";
 export async function getCartData(sessionId) {
   //paso 1: buscamos si el carrito existe
   const cart = await cartRepository.findOrCreateCart(sessionId);
-  console.log("Info del carrito: ", cart);
 
-  // paos 2 : lleanr el carrito de compras
-
-  return "info del carrito";
+  return populateCartItems(cart);
 }
 
 async function populateCartItems(cart) {
