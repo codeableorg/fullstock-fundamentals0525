@@ -10,6 +10,8 @@ export async function getCart(req, res, next) {
 export async function addItem(req, res) {
 
   try {
+    //  const { productId } = req.body;
+
     //     const product  = ????
     console.log("BODY???'",req.body);
 

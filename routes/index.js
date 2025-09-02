@@ -9,13 +9,14 @@ const router = express.Router();
 // Home Routes
 router.get("/", homeController.getHomePage);
 
-// Ruta de categories (polos, tazas y stickers)
-router.get("/:categoryType", categoryController.getProductsByCategory);
-
-router.get("/:categoryType/:id", productController.getProduct);
+// Products Routes
+router.get("/products/:id", productController.getProduct);
 
 // Rutas para el carrito de compra
 router.get("/cart", cartController.getCart);
 router.post("/cart/add-item", cartController.addItem);
+
+// Ruta de categories (polos, tazas y stickers)
+router.get("/:categoryType", categoryController.getProductsByCategory);
 
 export default router;
