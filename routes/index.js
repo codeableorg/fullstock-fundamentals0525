@@ -3,6 +3,7 @@ import * as homeController from "../controller/homeController.js";
 import * as categoryController from "../controller/categoryController.js";
 import * as productController from "../controller/productController.js";
 import * as cartController from "../controller/cartController.js";
+import * as orderController from "../controller/orderController.js";
 
 const router = express.Router();
 
@@ -16,7 +17,12 @@ router.get("/products/:id", productController.getProduct);
 router.get("/cart", cartController.getCart);
 router.post("/cart/add-item", cartController.addItem);
 
+// Ruta hacia el checkout - order
+router.get("/checkout", orderController.getCheckoutForm)
+
 // Ruta de categories (polos, tazas y stickers)
 router.get("/:categoryType", categoryController.getProductsByCategory);
+
+
 
 export default router;
