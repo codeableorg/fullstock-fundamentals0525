@@ -45,3 +45,19 @@ export async function updateCartItems(cartId, cartProducts) {
     );
   }
 }
+
+export async function clearCart(cartId) {
+  try {
+    const db = await readDB();
+    const cart = db.carts.find((cart) => cart.sessionId === cartId);
+
+    if (cart) {
+      cart.items = [];
+      await writeDB(db);
+    }
+  } catch (error) {
+    console.error("Error al limpiar el carrito:", error);
+    throw error;
+  }
+}
+

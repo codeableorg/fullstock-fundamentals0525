@@ -7,6 +7,13 @@ export async function getCartData(sessionId) {
 
   return populateCartItems(cart);
 }
+
+
+export async function getCart(sessionId) {
+  const cart = await cartRepository.findOrCreateCart(sessionId);
+  return populateCartItems(cart);
+}
+
 export async function addItemToCart(productId, sessioId) {
   if (!sessioId) {
     throw new Error("Session Id is required");

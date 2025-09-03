@@ -19,6 +19,8 @@ router.post("/cart/add-item", cartController.addItem);
 
 // Ruta hacia el checkout - order
 router.get("/checkout", orderController.getCheckoutForm)
+router.post("/orders", orderController.generateOrder)
+router.get("/thank-you", orderController.getThankYouPage);
 
 // Ruta de categories (polos, tazas y stickers)
 router.get("/:categoryType", categoryController.getProductsByCategory);

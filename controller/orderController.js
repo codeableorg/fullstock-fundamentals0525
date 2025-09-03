@@ -1,4 +1,4 @@
-// function
+import * as orderService from "../services/orderService.js";
 
 const countryOptions = [
   { value: "AR", label: "Argentina" },
@@ -22,7 +22,7 @@ const countryOptions = [
   { value: "PR", label: "Puerto Rico" },
   { value: "UY", label: "Uruguay" },
   { value: "VE", label: "Venezuela" },
-]
+];
 
 export async function getCheckoutForm(req, res, next) {
   // Obtener info del carrito , con el user session
@@ -38,4 +38,36 @@ export async function getCheckoutForm(req, res, next) {
     activePage: "checkout",
     options: countryOptions,
   });
+}
+
+export async function generateOrder(req, res) {
+  const order = await orderService.createOrder(req.body, req.session.id);
+
+  console.log("New order created: ", order);
+  res.redirect(`/thank-you?order=${order.orderNumber}`);
+}
+
+
+export async function getThankYouPage(req, res, next) {
+  try {
+    const orderNumber = req.query.order;
+    console.log("Order number received: ", orderNumber);
+
+    if (!orderNumber) {
+      return res.redirect("/");
+    }
+
+    await orderService.getOrderByOrderNumber(orderNumber, req.session.id);
+
+    res.render("thank-you", {
+      title: "Confirmación de compra",
+      activePage: "thank-you",
+      orderNumber,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.redirect("/");
+    }
+    next(error);
+  }
 }
