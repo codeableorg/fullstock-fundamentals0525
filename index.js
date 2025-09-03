@@ -11,6 +11,8 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
+app.use(express.urlencoded({ extended: false }));
+
 // Aquí le dices a Express que el motor de vistas será EJS.
 app.set("view engine", "ejs");
 

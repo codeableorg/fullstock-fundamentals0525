@@ -7,6 +7,39 @@ export async function getCartData(sessionId) {
 
   return populateCartItems(cart);
 }
+export async function addItemToCart(productId, sessioId) {
+  if (!sessioId) {
+    throw new Error("Session Id is required");
+  }
+
+  productId = parseInt(productId);
+
+  // paso 1: buscar el product en BD
+  const product = await productRepository.findById(productId);
+  if (!product) {
+    throw new Error("Product not found");
+  }
+
+  // paso 2: buscar/crear el varrito en la DB
+  const cart = await cartRepository.findOrCreateCart(sessioId);
+
+  // paso 3 : Verificar si el producto , ya existia previamente ne le carrito
+  const isItemIntoCart = cart.items.findIndex((item) => item.id === productId);
+
+  // si es diferente, quiere decir que este producto ya existia previamente en el carrito
+  if (isItemIntoCart !== -1) {
+    cart.items[isItemIntoCart].quantity += 1;
+  } else {
+    // paso 4: Actualizar  los item del carrito
+    cart.items.push({ productId, quantity: 1 });
+  }
+
+  // paso 5: Guadra la data en db (actualizacion del carrito)
+  await cartRepository.updateCartItems(cart.id, cart.items) 
+
+  // paso 6: devolver data del carrito actulizado
+  return populateCartItems(cart);
+}
 
 async function populateCartItems(cart) {
   if (!cart.items || cart.items.length === 0) {

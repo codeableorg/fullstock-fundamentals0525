@@ -1,4 +1,4 @@
-import { readDB } from "../data/db.js";
+import { readDB, writeDB } from "../data/db.js";
 
 // Nota: Esa funcion nos va a devolver la lista [] de productos por tipod e categoria
 export async function findAllProductsByCategoryId(categoryId) {
@@ -30,5 +30,14 @@ export async function findAll() {
     return db.products;
   } catch (error) {
     throw new Error(`Failed to retrieve all products`, error);
+  }
+}
+
+export async function findById(productId) {
+  try {
+    const db = await readDB();
+    return db.products.find((product) => product.id === productId);
+  } catch (error) {
+    throw new Error(`Failed to retrive one product by id : ${productId}`);
   }
 }

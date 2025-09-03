@@ -1,4 +1,4 @@
-import { readDB, writeDB , getNextId} from "../data/db.js";
+import { readDB, writeDB, getNextId } from "../data/db.js";
 
 export async function findOrCreateCart(sessionId) {
   if (!sessionId) {
@@ -23,5 +23,25 @@ export async function findOrCreateCart(sessionId) {
     return cart;
   } catch (error) {
     throw new Error("Failed creating/finding a cart");
+  }
+}
+
+export async function updateCartItems(cartId, cartProducts) {
+  try {
+    const db = await readDB();
+
+    const index = db.carts.findIndex((cart) => cart.id === cartId);
+
+    if (index !== -1) {
+      db.carts[index].items = cartProducts;
+      await writeDB(db);
+      return db.carts[index];
+    }
+
+    throw new Error(`Cart with ID ${cartId} not found`);
+  } catch (error) {
+    throw new Error(
+      `Failed  to update cart items | cardID : ${cartId} cartItems: ${cartProducts}`
+    );
   }
 }
